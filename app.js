@@ -185,10 +185,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (exportPolygonPoints.length >= 2) {
           exportPolygonShape = L.polygon(exportPolygonPoints, {
             color: '#10b981',
-            weight: 3,
+            weight: 2,
             dashArray: '6, 6',
-            fillColor: '#10b981',
-            fillOpacity: 0.2
+            fillColor: 'transparent',
+            fillOpacity: 0
           }).addTo(map);
         }
         return;
@@ -608,6 +608,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const tempExportShape = exportPolygonShape;
     const tempExportPoints = [...exportPolygonPoints];
 
+    const isBatasVisible = geojsonLayers.batas && map && map.hasLayer(geojsonLayers.batas);
+    if (isBatasVisible) map.removeLayer(geojsonLayers.batas);
+
     // Temporarily hide export crop boundary line & markers
     if (exportPolygonShape && map) map.removeLayer(exportPolygonShape);
     exportPolygonMarkers.forEach(m => { if (map) map.removeLayer(m); });
@@ -642,6 +645,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (activeDrawingPolyline && map) activeDrawingPolyline.addTo(map);
       if (activeDrawingPolygon && map) activeDrawingPolygon.addTo(map);
       activeDrawingMarkers.forEach(m => { if (map) m.addTo(map); });
+      if (isBatasVisible && map) map.addLayer(geojsonLayers.batas);
     }
 
     let finalCanvas = canvas;
@@ -668,6 +672,11 @@ document.addEventListener('DOMContentLoaded', () => {
         cropCanvas.width = cropW;
         cropCanvas.height = cropH;
         const ctx = cropCanvas.getContext('2d');
+
+        if (format === 'jpeg') {
+          ctx.fillStyle = '#0f172a';
+          ctx.fillRect(0, 0, cropW, cropH);
+        }
 
         // Clip strictly along the user's custom polygon coordinates!
         ctx.beginPath();
