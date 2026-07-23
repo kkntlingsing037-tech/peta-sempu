@@ -683,7 +683,165 @@ input:checked + .slider:before { transform: translateX(16px); }
   white-space: nowrap !important;
 }
 
+/* ==========================================================================
+   RESPONSIVE DESIGN SYSTEM FOR MOBILE & TABLET (HP / SMARTPHONE)
+   ========================================================================== */
+
 @media (max-width: 768px) {
-  :root { --sidebar-width: 300px; }
-  .brand-text h1 { font-size: 1rem; }
+  :root {
+    --sidebar-width: 85vw;
+  }
+
+  header.app-header {
+    height: 56px;
+    padding: 0 10px;
+    gap: 8px;
+  }
+
+  .brand-container {
+    gap: 8px;
+    min-width: 0;
+  }
+
+  .brand-icon {
+    width: 34px;
+    height: 34px;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    flex-shrink: 0;
+  }
+
+  .brand-text h1 {
+    font-size: 0.95rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .brand-text p {
+    display: none;
+  }
+
+  .header-actions {
+    gap: 6px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 2px;
+  }
+
+  .btn-header {
+    padding: 6px 10px;
+    font-size: 0.75rem;
+    border-radius: 6px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .main-workspace {
+    height: calc(100vh - 56px);
+  }
+
+  aside.sidebar-panel {
+    max-width: 340px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    box-shadow: 5px 0 25px rgba(0, 0, 0, 0.6);
+  }
+
+  aside.sidebar-panel.collapsed {
+    transform: translateX(-100%);
+  }
+
+  .sidebar-toggle-btn {
+    top: 10px;
+    left: calc(85vw + 6px);
+    width: 36px;
+    height: 36px;
+    font-size: 0.9rem;
+    border-radius: 8px;
+  }
+
+  aside.sidebar-panel.collapsed + .sidebar-toggle-btn {
+    left: 10px;
+  }
+
+  .sidebar-tabs {
+    padding: 4px;
+  }
+
+  .tab-btn {
+    padding: 8px 2px;
+    font-size: 0.7rem;
+  }
+
+  .tab-content-container {
+    padding: 12px;
+  }
+
+  .search-box-wrapper input {
+    font-size: 0.8rem;
+    padding: 8px 10px 8px 32px;
+  }
+
+  .chip {
+    padding: 4px 10px;
+    font-size: 0.7rem;
+  }
+
+  .poi-card {
+    padding: 10px;
+    gap: 10px;
+  }
+
+  .poi-icon-badge {
+    width: 32px;
+    height: 32px;
+    font-size: 0.85rem;
+  }
+
+  .poi-info h4 {
+    font-size: 0.82rem;
+  }
+
+  .editor-active-banner {
+    top: 64px;
+    left: 10px;
+    right: 10px;
+    transform: none;
+    padding: 8px 12px;
+    font-size: 0.78rem;
+    flex-direction: column;
+    gap: 6px;
+    align-items: stretch;
+    text-align: center;
+    border-radius: 10px;
+  }
+
+  .modal-overlay {
+    padding: 12px;
+  }
+
+  .modal-card {
+    max-width: 100%;
+    border-radius: 14px;
+    max-height: 88vh;
+  }
+
+  .modal-body {
+    padding: 14px;
+  }
+
+  .modal-actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .btn-modal-action {
+    width: 100%;
+    padding: 10px;
+  }
 }
+
